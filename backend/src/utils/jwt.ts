@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+import jwt, { SignOptions } from 'jsonwebtoken';
 import { config } from '../config/env';
 
 export interface JwtPayload {
@@ -10,17 +10,24 @@ export interface JwtPayload {
 
 export const signToken = (
   payload: JwtPayload,
-  expiresIn: string = '7d'
+  expiresIn?: string | number
 ): string => {
   try {
     if (!config.jwtSecret) {
       throw new Error('JWT_SECRET is not configured');
     }
 
-    return jwt.sign(payload, config.jwtSecret, {
-      expiresIn,
+    const options: SignOptions = {
       issuer: 'school-management-system',
-    });
+    };
+
+    if (expiresIn !== undefined) {
+      options.expiresIn = expiresIn as any;
+    } else {
+      options.expiresIn = '7d' as any;
+    }
+
+    return jwt.sign(payload, config.jwtSecret, options);
   } catch (error) {
     throw new Error(`Failed to sign token: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }

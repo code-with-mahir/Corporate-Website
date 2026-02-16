@@ -1,0 +1,15 @@
+export * as authService from './auth.service';
+export * as schoolService from './school.service';
+export * as subscriptionService from './subscription.service';
+export * as razorpayService from './razorpay.service';
+export * as academicYearService from './academicYear.service';
+export * as classService from './class.service';
+export * as studentService from './student.service';
+export * as teacherService from './teacher.service';
+export * as attendanceService from './attendance.service';
+export * as examService from './exam.service';
+export * as marksService from './marks.service';
+export * as feeService from './fee.service';
+export * as promotionService from './promotion.service';
+export * as announcementService from './announcement.service';
+export * as archiveService from './archive.service';
